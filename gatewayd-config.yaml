@@ -1,0 +1,10 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gatewayd-config
+  labels:
+    app: gatewayd
+data:
+  GATEWAYD_CLIENTS_DEFAULT_ADDRESS: postgres:5432
+  GATEWAYD_LOGGERS_DEFAULT_LEVEL: debug # For production, use info

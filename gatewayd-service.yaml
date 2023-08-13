@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: gatewayd # Sets service name
+  labels:
+    app: gatewayd # Labels and Selectors
+spec:
+  type: NodePort # Sets service type
+  ports:
+    - port: 15432 # Sets port to run the gatewayd application
+  selector:
+    app: gatewayd
+

@@ -1,0 +1,32 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatewayd  # Sets Deployment name
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gatewayd
+  template:
+    metadata:
+      labels:
+        app: gatewayd
+    spec:
+      containers:
+        - name: gatewayd
+          image: localhost:32000/gatewayd:latest # Sets Image
+          imagePullPolicy: "IfNotPresent"
+          command: ["gatewayd", "run"]
+          ports:
+            - containerPort: 15432  # Exposes container port
+          envFrom:
+            - configMapRef:
+              name: gatewayd-config
+#          volumeMounts:
+#            - mountPath: /var/lib/gatewaydql/data
+#              name: gatewayd
+#      volumes:
+#        - name: gatewayd
+#          persistentVolumeClaim:
+#            claimName: gatewayd-pv-claim
